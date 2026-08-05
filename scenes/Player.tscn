@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cy7hjs2prenp4"]
+
+[ext_resource type="Texture2D" uid="uid://dhy8dprn1r5bf" path="res://assets/textures/character/Skin1Idle.png" id="1_p0vlq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpr0p"]
+size = Vector2(36, 19)
+
+[node name="Player" type="CharacterBody2D" unique_id=693381621]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=435159484]
+position = Vector2(0, -47.000015)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_p0vlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595254239]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_cpr0p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=328093391]
