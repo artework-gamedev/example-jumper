@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 
 const MAX_SPEED = 300.0
@@ -8,11 +9,10 @@ const MAX_FALL_SPEED = -JUMP_VELOCITY * 2
 const GRAVITY = 15.0
 
 var viewport_size: Vector2
-const TELEPORT_MARGIN = 20
+const TELEPORT_MARGIN = 20	
 
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
-	print(viewport_size)
 	
 func _process(_delta: float) -> void:
 	pass
