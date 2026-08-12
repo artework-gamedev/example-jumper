@@ -4,18 +4,24 @@ class_name Player
 
 const MAX_SPEED = 300.0
 const ACCELERATION = MAX_SPEED * 5
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -800.0
 const MAX_FALL_SPEED = -JUMP_VELOCITY * 2
 const GRAVITY = 15.0
 
 var viewport_size: Vector2
 const TELEPORT_MARGIN = 20	
 
+@onready var animator : AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 	
 func _process(_delta: float) -> void:
-	pass
+	# Set the correct animation
+	if velocity.y > 0:
+		set_animation("fall")
+	else:
+		set_animation("jump")
 
 func _physics_process(delta: float) -> void:
 	# Vertical falling
@@ -31,5 +37,11 @@ func _physics_process(delta: float) -> void:
 	elif global_position.x > viewport_size.x + TELEPORT_MARGIN:
 		global_position.x = -TELEPORT_MARGIN + 1
 	
-	
 	move_and_slide()
+
+func jump() -> void:
+	velocity.y = JUMP_VELOCITY
+
+func set_animation(anim_name: String) -> void:
+	if animator.current_animation != anim_name:
+		animator.play(anim_name)
