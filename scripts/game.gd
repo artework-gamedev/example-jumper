@@ -7,13 +7,17 @@ var camera: Camera2D = null
 # Platform generation globals
 @onready var platform_parent = $PlatformParent
 var platform_scene: Resource = preload("res://scenes/Platform.tscn")
+var next_platform_y_target: float = 0
+
+@onready var player: Player = $Player
+@onready var viewport_size: Vector2 = get_viewport_rect().size
 
 func _ready() -> void:
 	camera = camera_scene.instantiate()
 	camera.setup_camera($Player)
 	add_child(camera)
 	
-	var _next_platform_y: float = generate_level_platforms(50, -1, true)
+	next_platform_y_target = generate_level_platforms(20, -1, true)
 
 func _process(_delta: float) -> void:
 	# Process debug commands to quit and reset game
@@ -21,6 +25,9 @@ func _process(_delta: float) -> void:
 		get_tree().quit()
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	if player.global_position.y <= next_platform_y_target + viewport_size.y:
+		next_platform_y_target = generate_level_platforms(10, next_platform_y_target, false)
 
 func create_platform(location: Vector2) -> Node2D:
 	var platform: Node2D = platform_scene.instantiate()
@@ -32,7 +39,6 @@ func create_platform(location: Vector2) -> Node2D:
 func generate_level_platforms(num_platforms: int, start_y: float, generate_ground: bool) -> float:
 	const platform_width: int = 134 + 2 # Hardcoded value, taken from the width of the CollisionShape2D rectangle of the platform
 	const platform_height: int = 63 # Hardcoded, taken from the height of the platform sprite
-	var viewport_size: Vector2 = get_viewport_rect().size
 	
 	# Generating the ground layer
 	if generate_ground:
