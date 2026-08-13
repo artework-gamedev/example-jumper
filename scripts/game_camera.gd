@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 	for area in overlapping_areas:
 		if area is Platform:
 			area.queue_free()
-			print("Deleting " + area.name)
+			# print("Deleting " + area.name)
 
 func _physics_process(_delta: float) -> void:
 	if player == null:

@@ -5,15 +5,22 @@ extends Node2D
 var platform_scene: Resource = preload("res://scenes/Platform.tscn")
 var next_platform_y_target: float = 0
 
-@export var player: Player
+var player: Player = null
 @onready var viewport_size: Vector2 = get_viewport_rect().size
 
 
+func setup(_player: Player) -> void:
+	player = _player
+
+
 func _ready() -> void:
-	next_platform_y_target = generate_level_platforms(20, -1, true)
+	next_platform_y_target = generate_level_platforms(10, -1, true)
 
 
 func _process(_delta: float) -> void:
+	if player == null:
+		return
+		
 	# Load the next set of platforms when the player reaches the required height
 	if player.global_position.y <= next_platform_y_target + viewport_size.y:
 		next_platform_y_target = generate_level_platforms(10, next_platform_y_target, false)
@@ -55,5 +62,7 @@ func generate_level_platforms(num_platforms: int, start_y: float, generate_groun
 		var next_platform_x = randi_range(platform_min_x, platform_max_x)
 		create_platform(Vector2(next_platform_x, next_platform_y))
 		next_platform_y = next_platform_y - distance_between_platforms
+	
+	print("Generated ", num_platforms, " platforms")
 	
 	return next_platform_y
