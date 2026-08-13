@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdcfk7xay2ln0" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://cy7hjs2prenp4" path="res://scenes/Player.tscn" id="2_qbsmt"]
+[ext_resource type="PackedScene" uid="uid://btjlcuy260hrm" path="res://scenes/level_generator.tscn" id="3_cpr0p"]
 
 [node name="Game" type="Node2D" unique_id=177505111]
 script = ExtResource("1_ibkli")
@@ -9,4 +10,5 @@ script = ExtResource("1_ibkli")
 [node name="Player" parent="." unique_id=693381621 instance=ExtResource("2_qbsmt")]
 position = Vector2(249, 587)
 
-[node name="PlatformParent" type="Node2D" parent="." unique_id=855812738]
+[node name="LevelGenerator" parent="." unique_id=746071219 node_paths=PackedStringArray("player") instance=ExtResource("3_cpr0p")]
+player = NodePath("../Player")
