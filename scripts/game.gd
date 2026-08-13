@@ -8,16 +8,24 @@ var camera: Camera2D = null
 var player_scene: Resource = preload("res://scenes/Player.tscn")
 var player: Player = null
 const player_spawn_offset: int = 100 # How high above the ground player spawns
-var player_spawn_pos: Vector2
+var player_spawn_pos: Vector2 = Vector2.ZERO
 
 # Level generator instantiation
 @onready var level_generator: Node2D = $LevelGenerator
+
+# Background sprites
+@onready var ground_sprite: Sprite2D = $GroundSprite
 
 
 func _ready() -> void:
 	var viewport_size = get_viewport_rect().size
 	player_spawn_pos.x = viewport_size.x / 2.0
 	player_spawn_pos.y = viewport_size.y - player_spawn_offset
+	
+	ground_sprite.global_position.x = viewport_size.x / 2
+	ground_sprite.global_position.y = viewport_size.y
+	const ground_sprite_width: int = 800 # Hardcoded texture size
+	ground_sprite.scale.x = viewport_size.x / ground_sprite_width
 	
 	new_game()
 

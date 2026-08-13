@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://bkup22ylen547"]
 
 [ext_resource type="Script" uid="uid://cdcfk7xay2ln0" path="res://scripts/game.gd" id="1_ibkli"]
+[ext_resource type="Texture2D" uid="uid://c3hwr3yvum4e2" path="res://assets/textures/bg/Ground.png" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://btjlcuy260hrm" path="res://scenes/level_generator.tscn" id="3_cpr0p"]
 
 [node name="Game" type="Node2D" unique_id=177505111]
 script = ExtResource("1_ibkli")
 
 [node name="LevelGenerator" parent="." unique_id=746071219 instance=ExtResource("3_cpr0p")]
+
+[node name="GroundSprite" type="Sprite2D" parent="." unique_id=1038792825]
+position = Vector2(259, 957)
+scale = Vector2(1, 0.8)
+texture = ExtResource("3_78awf")
+offset = Vector2(0, -61)
