@@ -30,6 +30,7 @@ window/handheld/orientation=1
 [global_group]
 
 debug_console=""
+buttons=""
 
 [input]
 

@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bp3oq5pexuce2" path="res://scripts/screens.gd" id="1_203o4"]
 [ext_resource type="Texture2D" uid="uid://c6bq1iiq7504q" path="res://assets/textures/ui/gear.png" id="2_k1lx2"]
+[ext_resource type="PackedScene" uid="uid://cekyjn6g6ckpe" path="res://scenes/title_screen.tscn" id="2_kc882"]
 
 [node name="Screens" type="CanvasLayer" unique_id=455942434]
 script = ExtResource("1_203o4")
+
+[node name="TitleScreen" parent="." unique_id=1205828795 instance=ExtResource("2_kc882")]
 
 [node name="Debug" type="Control" parent="." unique_id=1089835848]
 z_index = 1024

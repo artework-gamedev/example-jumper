@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cekyjn6g6ckpe"]
+
+[ext_resource type="Texture2D" uid="uid://cqgkje1i8s4lb" path="res://assets/textures/ui/BigLogo.png" id="1_fgkus"]
+[ext_resource type="PackedScene" uid="uid://c3ydv3xsqqnbi" path="res://scenes/screen_button.tscn" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://c5hnbe7831ytn" path="res://assets/textures/ui/PlayBtn.png" id="3_mgrm8"]
+
+[sub_resource type="Animation" id="Animation_s4lrb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-101.5, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_mgrm8"]
+resource_name = "animate_play_button"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Play:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-101.5, 40), Vector2(-101.5, 70)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dc4i4"]
+_data = {
+&"RESET": SubResource("Animation_s4lrb"),
+&"animate_play_button": SubResource("Animation_mgrm8")
+}
+
+[node name="TitleScreen" type="Control" unique_id=1205828795]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=138432305]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="Control" unique_id=481801817]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -331.0
+offset_right = 205.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fgkus")
+expand_mode = 1
+
+[node name="Play" parent="Control" unique_id=1845581436 instance=ExtResource("2_s4lrb")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = 20.0
+offset_right = 121.5
+offset_bottom = 260.00076
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_mgrm8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=588329282]
+libraries/ = SubResource("AnimationLibrary_dc4i4")
+autoplay = &"animate_play_button"
