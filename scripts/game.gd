@@ -67,6 +67,8 @@ func configure_parallax(parallax: Parallax2D, scroll_scale: float) -> void:
 	var texture_size: Vector2 = sprite.texture.get_size()
 	var texture_scale_factor: float = viewport_size.x / texture_size.x
 	sprite.position.x = viewport_size.x / 2
+	sprite.position.y = viewport_size.y / 2
 	sprite.scale = Vector2.ONE * texture_scale_factor
 	parallax.repeat_size = Vector2(0, texture_size.y * texture_scale_factor)
+	parallax.repeat_times = 1
 	parallax.scroll_scale.y = scroll_scale
