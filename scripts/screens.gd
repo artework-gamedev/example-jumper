@@ -1,11 +1,17 @@
 extends CanvasLayer
 
+@onready var console_log: Control = $Debug/ConsoleLog
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	# Console is off at the beginning of the game
+	console_log.visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
+
+
+# Console is toggled on button press
+func _on_toggle_console_pressed() -> void:
+	console_log.visible = not console_log.visible
