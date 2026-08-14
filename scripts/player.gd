@@ -9,12 +9,20 @@ const MAX_FALL_SPEED = -JUMP_VELOCITY * 2
 const GRAVITY = 15.0
 
 var viewport_size: Vector2
-const TELEPORT_MARGIN = 20	
+const TELEPORT_MARGIN = 20
+
+var use_accelerometer: bool = false
+const ACCELEROMETER_LIMIT: float = 2.0
 
 @onready var animator : AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
+	
+	var os_name = OS.get_name()
+	if os_name == "Android" or os_name == "iOS":
+		use_accelerometer = true
+	
 	
 func _process(_delta: float) -> void:
 	# Set the correct animation
@@ -28,8 +36,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y = clampf(velocity.y + GRAVITY, -MAX_FALL_SPEED, MAX_FALL_SPEED)
 	
 	# Horiziontal motion
-	var horizontal_dir = Input.get_axis("move_left", "move_right")
-	velocity.x = move_toward(velocity.x, horizontal_dir * MAX_SPEED, ACCELERATION * delta)
+	if use_accelerometer:
+		var horizontal_dir = clampf(Input.get_accelerometer().x / ACCELEROMETER_LIMIT, -1.0, +1.0)
+		velocity.x = move_toward(velocity.x, horizontal_dir * MAX_SPEED, ACCELERATION * delta)
+	else:
+		var horizontal_dir = Input.get_axis("move_left", "move_right")
+		velocity.x = move_toward(velocity.x, horizontal_dir * MAX_SPEED, ACCELERATION * delta)
 	
 	# Teleport between edges of screen
 	if global_position.x < -TELEPORT_MARGIN:
