@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConsoleLog" type="Control" parent="Debug" unique_id=1541147343]
+[node name="ConsoleLog" type="Control" parent="Debug" unique_id=1541147343 groups=["debug_console"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,13 +34,12 @@ color = Color(0, 0, 0, 0.39215687)
 
 [node name="BuildNoLabel" type="Label" parent="Debug/ConsoleLog" unique_id=1653203607]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -243.0
-offset_top = 30.0
-offset_right = 243.0
-offset_bottom = 53.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 37.0
+offset_top = 20.0
+offset_right = -37.0
+offset_bottom = 43.0
 grow_horizontal = 2
 text = "Build 0.1.0"
 
