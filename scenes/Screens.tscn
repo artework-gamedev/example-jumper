@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6bq1iiq7504q" path="res://assets/textures/ui/gear.png" id="2_k1lx2"]
 [ext_resource type="PackedScene" uid="uid://cekyjn6g6ckpe" path="res://scenes/title_screen.tscn" id="2_kc882"]
 [ext_resource type="PackedScene" uid="uid://ns1g6okemoe4" path="res://scenes/pause_screen.tscn" id="3_ryq54"]
+[ext_resource type="PackedScene" uid="uid://dr7sgqpudod78" path="res://scenes/game_over_screen.tscn" id="4_ylwu4"]
 
 [node name="Screens" type="CanvasLayer" unique_id=455942434]
 script = ExtResource("1_203o4")
@@ -11,6 +12,8 @@ script = ExtResource("1_203o4")
 [node name="TitleScreen" parent="." unique_id=1205828795 instance=ExtResource("2_kc882")]
 
 [node name="PauseScreen" parent="." unique_id=1975679009 instance=ExtResource("3_ryq54")]
+
+[node name="GameOverScreen" parent="." unique_id=1175203997 instance=ExtResource("4_ylwu4")]
 
 [node name="Debug" type="Control" parent="." unique_id=1089835848]
 z_index = 1024
