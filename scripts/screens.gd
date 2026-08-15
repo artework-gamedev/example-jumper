@@ -2,12 +2,18 @@ extends CanvasLayer
 
 @onready var console_log: Control = $Debug/ConsoleLog
 
+@onready var title_screen: Control = $TitleScreen
+@onready var pause_screen: Control = $PauseScreen
+@onready var game_over_screen: Control = $GameOverScreen
+
+var current_screen: BaseScreen = null
 
 func _ready() -> void:
 	# Console is off at the beginning of the game
 	console_log.visible = false
 	
 	register_buttons()
+	change_screen(title_screen)
 
 
 func _process(_delta: float) -> void:
@@ -29,18 +35,27 @@ func register_buttons() -> void:
 		button.clicked.connect(_on_screen_button_pressed)
 
 
+# Switches the currently active screen
+func change_screen(new_screen: BaseScreen) -> void:
+	if current_screen != null:
+		current_screen.disappear()
+	current_screen = new_screen
+	if current_screen != null:
+		current_screen.appear()
+
+
 # Callback for when a ScreenButton is pressed
 func _on_screen_button_pressed(button: ScreenButton) -> void:
 	match button.name:
 		"TitlePlayBtn" :
-			print("Play button was pressed")
+			change_screen(pause_screen) # debug
 		"PauseRetryBtn":
-			print("Pause retry button was pressed")
+			change_screen(game_over_screen) # debug
 		"PauseMenuBtn":
-			print("Pause menu button was pressed")
+			change_screen(title_screen) # debug
 		"PauseCloseBtn":
-			print("Pause close button was pressed")
+			change_screen(null) # debug
 		"GameOverRetryBtn":
-			print("Gamve over retry button was pressed")
+			change_screen(pause_screen) # debug
 		"GameOverMenuBtn":
-			print("Game over menu button was pressed")
+			change_screen(title_screen) # debug

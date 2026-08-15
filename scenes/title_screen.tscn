@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cekyjn6g6ckpe"]
 
 [ext_resource type="Texture2D" uid="uid://cqgkje1i8s4lb" path="res://assets/textures/ui/BigLogo.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://dpptwa200hwat" path="res://scripts/base_screen.gd" id="1_mgrm8"]
 [ext_resource type="PackedScene" uid="uid://c3ydv3xsqqnbi" path="res://scenes/screen_button.tscn" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://c5hnbe7831ytn" path="res://assets/textures/ui/PlayBtn.png" id="3_mgrm8"]
 
@@ -49,6 +50,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mgrm8")
 
 [node name="Control" type="Control" parent="." unique_id=138432305]
 layout_mode = 1
