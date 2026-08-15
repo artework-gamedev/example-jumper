@@ -38,7 +38,8 @@ func register_buttons() -> void:
 # Switches the currently active screen
 func change_screen(new_screen: BaseScreen) -> void:
 	if current_screen != null:
-		current_screen.disappear()
+		var disappear_tween: Tween = current_screen.disappear()
+		await disappear_tween.finished
 	current_screen = new_screen
 	if current_screen != null:
 		current_screen.appear()
