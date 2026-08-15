@@ -1,6 +1,7 @@
 extends TextureButton
+class_name ScreenButton
 
-signal clicked(button)
+signal clicked(button: ScreenButton)
 
 
 func _on_pressed() -> void:
