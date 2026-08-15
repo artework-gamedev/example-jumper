@@ -6,6 +6,9 @@ extends CanvasLayer
 @onready var pause_screen: Control = $PauseScreen
 @onready var game_over_screen: Control = $GameOverScreen
 
+# Mutex to make sure only one change screen process can run at a time
+var _screen_changing: bool = false
+
 var current_screen: BaseScreen = null
 
 func _ready() -> void:
@@ -37,26 +40,39 @@ func register_buttons() -> void:
 
 # Switches the currently active screen
 func change_screen(new_screen: BaseScreen) -> void:
+	# Make sure we are not currently animating a screen change
+	if _screen_changing:
+		return
+		
+	_screen_changing = true
 	if current_screen != null:
 		var disappear_tween: Tween = current_screen.disappear()
 		await disappear_tween.finished
 	current_screen = new_screen
 	if current_screen != null:
-		current_screen.appear()
+		var appear_tween: Tween = current_screen.appear()
+		await appear_tween.finished
+	_screen_changing = false
 
 
 # Callback for when a ScreenButton is pressed
 func _on_screen_button_pressed(button: ScreenButton) -> void:
 	match button.name:
 		"TitlePlayBtn" :
+			print("TitlePlayBtn pressed")
 			change_screen(pause_screen) # debug
 		"PauseRetryBtn":
+			print("PauseRetryBtn pressed")
 			change_screen(game_over_screen) # debug
 		"PauseMenuBtn":
+			print("PauseMenuBtn pressed")
 			change_screen(title_screen) # debug
 		"PauseCloseBtn":
+			print("PauseCloseBtn pressed")
 			change_screen(null) # debug
 		"GameOverRetryBtn":
+			print("GameOverRetryBtn pressed")
 			change_screen(pause_screen) # debug
 		"GameOverMenuBtn":
+			print("GameOverMenuBtn pressed")
 			change_screen(title_screen) # debug
