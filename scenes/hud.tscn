@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://d0weqpa1yyyuy"]
+
+[ext_resource type="Script" uid="uid://doyxbby38a3bq" path="res://scripts/hud.gd" id="1_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://b50myfmlkq2rr" path="res://assets/textures/ui/ScoreBox.png" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://cb7dgbr7oesx5" path="res://assets/textures/ui/PauseBtn.png" id="2_5ysmq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6b7t"]
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control" unique_id=752095476]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ysmq")
+
+[node name="TopBarBG" type="ColorRect" parent="." unique_id=1070003516]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="TopBar" type="Control" parent="." unique_id=1062005568]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="TopBar" unique_id=2078339729]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -38.0
+offset_right = 284.2857
+offset_bottom = 38.0
+grow_vertical = 2
+texture = ExtResource("1_oo0fn")
+expand_mode = 1
+
+[node name="ScoreLabel" type="Label" parent="TopBar/TextureRect" unique_id=864924410]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -260.2857
+offset_top = -21.0
+offset_right = -19.285706
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "9999"
+label_settings = SubResource("LabelSettings_r6b7t")
+horizontal_alignment = 2
+
+[node name="PauseButton" type="TextureButton" parent="TopBar" unique_id=798168519]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -39.0
+offset_right = -7.0
+offset_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("2_5ysmq")
+
+[connection signal="pressed" from="TopBar/PauseButton" to="." method="_on_pause_button_pressed"]

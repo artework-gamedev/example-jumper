@@ -6,17 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c488vmudwdrfb" path="res://assets/textures/bg/Layer1.png" id="4_78awf"]
 [ext_resource type="Texture2D" uid="uid://f8lpmglo77e7" path="res://assets/textures/bg/Layer2.png" id="5_aug50"]
 [ext_resource type="Texture2D" uid="uid://c8ccvlv1bdr7x" path="res://assets/textures/bg/Layer3.png" id="6_kiw3p"]
+[ext_resource type="PackedScene" uid="uid://d0weqpa1yyyuy" path="res://scenes/hud.tscn" id="7_kiw3p"]
 
 [node name="Game" type="Node2D" unique_id=177505111]
 script = ExtResource("1_ibkli")
-
-[node name="LevelGenerator" parent="." unique_id=746071219 instance=ExtResource("3_cpr0p")]
-
-[node name="GroundSprite" type="Sprite2D" parent="." unique_id=1038792825]
-position = Vector2(270, 960)
-scale = Vector2(0.675, 0.8)
-texture = ExtResource("3_78awf")
-offset = Vector2(0, -61)
 
 [node name="ParallaxBackround" type="Node2D" parent="." unique_id=1221880115]
 
@@ -43,3 +36,16 @@ z_index = -1
 position = Vector2(270, 0)
 scale = Vector2(0.675, 0.675)
 texture = ExtResource("6_kiw3p")
+
+[node name="GroundSprite" type="Sprite2D" parent="." unique_id=1038792825]
+position = Vector2(270, 960)
+scale = Vector2(0.675, 0.8)
+texture = ExtResource("3_78awf")
+offset = Vector2(0, -61)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1287268239]
+layer = 100
+
+[node name="HUD" parent="UILayer" unique_id=752095476 instance=ExtResource("7_kiw3p")]
+
+[node name="LevelGenerator" parent="." unique_id=746071219 instance=ExtResource("3_cpr0p")]
