@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_5ysmq")
 
 [node name="TopBarBG" type="ColorRect" parent="." unique_id=1070003516]
@@ -34,14 +35,14 @@ grow_horizontal = 2
 
 [node name="TextureRect" type="TextureRect" parent="TopBar" unique_id=2078339729]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = -38.0
-offset_right = 284.2857
-offset_bottom = 38.0
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -80.0
+offset_right = 282.2857
+offset_bottom = -4.0
+grow_vertical = 0
 texture = ExtResource("1_oo0fn")
 expand_mode = 1
 
@@ -64,17 +65,17 @@ horizontal_alignment = 2
 
 [node name="PauseButton" type="TextureButton" parent="TopBar" unique_id=798168519]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -89.0
-offset_top = -39.0
-offset_right = -7.0
-offset_bottom = 39.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -82.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 texture_normal = ExtResource("2_5ysmq")
 
 [connection signal="pressed" from="TopBar/PauseButton" to="." method="_on_pause_button_pressed"]
